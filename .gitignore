@@ -1,0 +1,5 @@
+/src/main/resources/config.properties
+/.idea/
+/target/
+/src/main/resources/temp.txt
+/VK_API_examples.iml
