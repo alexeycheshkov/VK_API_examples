@@ -1,13 +1,15 @@
-package main;
+package api;
 
 import models.JsonResponse;
 import utils.ApiUtils;
-import utils.Config;
 
-public class ApiAppRequest {
-    private static final String OWNER_ID = Config.get("owner_id");
-    private static final String ACCESS_TOKEN = Config.get("access_token");
-    private static final String API_VERSION = Config.get("api_version");
+public class Wall extends ApiAppRequest{
+
+    public static String postPhotoOnTheWall(String photoId) {
+        String request = String.format("%s?owner_id=%s&attachments=photo%s_%s&access_token=%s&v=%s","wall.post",OWNER_ID,OWNER_ID,photoId,ACCESS_TOKEN,API_VERSION);
+        JsonResponse jsonResponse = ApiUtils.post(request);
+        return jsonResponse.getBody().toPrettyString();
+    }
 
     public static String postTextMsgToTheWall(String text) {
         String request = String.format("%s?owner_id=%s&message=%s&access_token=%s&v=%s","wall.post",OWNER_ID,text,ACCESS_TOKEN,API_VERSION);
@@ -26,5 +28,4 @@ public class ApiAppRequest {
         JsonResponse jsonResponse = ApiUtils.post(request);
         return jsonResponse.getBody().toPrettyString();
     }
-
 }

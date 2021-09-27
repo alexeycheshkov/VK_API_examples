@@ -26,4 +26,9 @@ public class ApiUtils {
         return new JsonResponse (response.getStatus(),response.getBody());
     }
 
+    public static JsonResponse upLoad(String requestPath, String filePath, String typeOfFile){
+        HttpResponse<JsonNode> response = Unirest.post(requestPath).field(typeOfFile, new File(filePath)).asJson();
+        Unirest.shutDown();
+        return new JsonResponse (response.getStatus(),response.getBody());
+    }
 }
